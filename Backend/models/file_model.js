@@ -1,5 +1,5 @@
 module.exports = (sequelize,DataTypes)=>{
-    const blogs = sequelize.define("blogs",{
+    const files = sequelize.define("files",{
        
        userid:{type:DataTypes.INTEGER,refrence:{model:'users',key:'id'}},
        filename:{type:DataTypes.STRING,allowNull:false},
@@ -7,5 +7,5 @@ module.exports = (sequelize,DataTypes)=>{
 
     })
 
-    return blogs;
+    return files;
 }
