@@ -32,7 +32,7 @@ fileUpload.get('/', (req, res) => {
         console.log("Error getting data: ", err);
         res.status(500).send(err);
       } else {
-        res.send(data);
+        res.json(data);
       }
     });
 });
@@ -52,9 +52,9 @@ fileUpload.post('/upload',upload.single('file'), (req, res) => {
     s3.upload(params, (err, data) => {
       if (err) {
         console.log("Error uploading data: ", err);
-        res.status(500).send(err);
+        res.status(500).json(err);
       } else {
-        res.send('File uploaded successfully to S3');
+        res.json('File uploaded successfully to S3');
       }
     });
 });
@@ -76,7 +76,7 @@ fileUpload.delete('/delete/:filename', (req, res) => {
         console.log("Error deleting data: ", err);
         res.status(500).send(err);
       } else {
-        res.send('File deleted successfully from S3');
+        res.json('File deleted successfully from S3');
       }
     });
 });
