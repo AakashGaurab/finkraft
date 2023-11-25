@@ -1,0 +1,16 @@
+.card{
+    width: 80%;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 3%;
+    margin-top: 2%;
+}
+
+.card>div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+

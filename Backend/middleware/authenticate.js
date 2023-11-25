@@ -1,8 +1,7 @@
 const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
 
 const auth = (req,res,next)=>{
-    let token = req.cookies.normal_token;
+    let token = req.headers.token;
     if (token){
         jwt.verify(token,"blog",(err,decoded)=>{
             if (decoded){
@@ -10,12 +9,12 @@ const auth = (req,res,next)=>{
                 next();
             }
             else {
-                res.json("Please Login");
+                res.status(404).json("Please Login");
             }
         })
     }
     else {
-        res.json("No Token Found");
+        res.status(401).json("No Token Found");
     }
     
 }

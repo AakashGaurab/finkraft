@@ -6,7 +6,6 @@ const cookieParser = require("cookie-parser");
 
 app.use(express.json());      
 app.use(cors({origin:"*"}));   //handling cors
-app.use(cookieParser());
 
 const {user}= require("./routes/user_routes");
 const {fileUpload} = require("./routes/file_upload");

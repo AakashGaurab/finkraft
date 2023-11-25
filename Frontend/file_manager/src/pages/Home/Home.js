@@ -3,16 +3,29 @@ import Navbar from '../../component/Navbar'
 import Swal from 'sweetalert2';
 import Style from './home.module.css';
 import Loader from "../../component/Loader"
+import Card from '../../component/Card'
 
 function Home() {
+  let id = sessionStorage.getItem("token");
+  if (!id){
+    window.location.href="/login";
+  }
   let [flag,setFlag] = useState(false);
+  let [uploaded,setUploaded] = useState([]);
+  const [trigger, setTrigger] = useState(0);
 
-  useEffect(()=>{
+  useEffect(()=>{                 //getting all uploaded files on mounting 
     async function getallfiles(){
         try {
-          let response = await fetch('http://localhost:3501/files');
+          let response = await fetch('http://localhost:3501/files',{
+            method:"GET",
+            headers:{
+              token:sessionStorage.getItem("token")
+            }
+          });
           let data = await response.json();
-          console.log(data);
+          setUploaded(data);
+
           
         } catch (error) {
           Swal.fire({
@@ -24,10 +37,10 @@ function Home() {
 
 
     getallfiles();
-  },[])
+  },[trigger])
 
-  let uploadFile = async ()=>{
-    setFlag(true);
+  let uploadFile = async ()=>{            // on click upload file to s3
+    setFlag(true);    // loader activated
     const file = document.getElementById("inputGroupFile04").files[0];
     const formData = new FormData();
     formData.append('file', file);
@@ -35,6 +48,9 @@ function Home() {
     try {
       const response = await fetch('http://localhost:3501/files/upload', {
         method: 'POST',
+        headers:{
+           token:sessionStorage.getItem("token")
+        },
         body: formData
       });
 
@@ -55,7 +71,7 @@ function Home() {
     }
 
 
-    setFlag(false);
+    setFlag(false);   //loader deactivated
   }
   return (
     <>
@@ -68,7 +84,14 @@ function Home() {
       </div>
     </div>}
 
-
+    <div>
+    {uploaded.map((element)=>{
+      return (
+      <Card filename = {element.filename} id = {element.id} uploadDate = {element.uploadDate} setTrigger={setTrigger}/>
+      )
+    })}
+    </div>
+    
     
     </>
   )
