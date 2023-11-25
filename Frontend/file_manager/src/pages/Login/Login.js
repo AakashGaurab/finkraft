@@ -34,7 +34,7 @@ function Login() {
                 icon:"success",
                 title:final_response.msg
                })
-               sessionStorage.setItem("id",final_response.id)
+               sessionStorage.setItem("token",final_response.token)
                window.location.href = "/";
 
             }

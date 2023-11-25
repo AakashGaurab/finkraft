@@ -52,10 +52,8 @@ user.post("/login",async(req,res)=>{
         else {
             bcrypt.compare(password,results[0].password,(err,result)=>{
                 if (result){
-                    let token = jwt.sign({email:results[0].id},"blog");
-                    
-                    res.cookie("normal_token",token,{httpOnly:true});
-                    res.json({msg:"Login Succesfull",id:results[0].id});
+                    let token = jwt.sign({id:results[0].id},"blog");
+                    res.json({msg:"Login Succesfull",id:results[0].id,token:token});
                 }
                 else {
                     res.json("Wrong Password");
