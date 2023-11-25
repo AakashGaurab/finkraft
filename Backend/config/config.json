@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "Aa@82548254",
+    "username": "admin",
+    "password": "Aa82548255",
     "database": "finkraft",
-    "host": "localhost",
+    "host": "database-1.colikes6zru4.ap-south-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
