@@ -8,7 +8,7 @@ function Card(props) {
 
     let  deleteFile= async (name)=>{                //deleting a file
         try {
-            let response = await fetch(`http://localhost:3501/files/delete/${name}`,{
+            let response = await fetch(`http://65.0.106.33:3501/files/delete/${name}`,{
                 method:"DELETE",
                 headers:{
                     "Content-type":"application/json"

@@ -17,7 +17,7 @@ function Home() {
   useEffect(()=>{                 //getting all uploaded files on mounting 
     async function getallfiles(){
         try {
-          let response = await fetch('http://localhost:3501/files',{
+          let response = await fetch('http://65.0.106.33:3501/files',{
             method:"GET",
             headers:{
               token:sessionStorage.getItem("token")
@@ -46,7 +46,7 @@ function Home() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:3501/files/upload', {
+      const response = await fetch('http://65.0.106.33:3501/files/upload', {
         method: 'POST',
         headers:{
            token:sessionStorage.getItem("token")
@@ -70,7 +70,7 @@ function Home() {
       })
     }
 
-
+    setTrigger(trigger+1);
     setFlag(false);   //loader deactivated
   }
   return (
