@@ -68,7 +68,7 @@ GET /files
 header token:{jwtToken from login}
 
 
-Delete file
+# Delete file
 DELETE /files/delete/:filename
 
 
